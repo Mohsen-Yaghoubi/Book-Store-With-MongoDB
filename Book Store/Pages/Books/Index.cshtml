@@ -1,0 +1,42 @@
+﻿@page
+@model Book_Store.Pages.Books.IndexModel
+@{
+}
+
+
+<h1>Book</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-info mb-2" asp-page="./Create">Create</a>
+    </div>
+    <div class="col-md-6 form-group form-inline">
+        <form method="get">
+            <input class="form-control" type="text" name="name" placeholder="Book Name" />
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+        <a asp-page="./Index" class="btn btn-secondary">Reset</a>
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Year</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Year</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

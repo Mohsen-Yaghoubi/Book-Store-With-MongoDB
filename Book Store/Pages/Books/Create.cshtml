@@ -1,0 +1,27 @@
+﻿@page
+@model Book_Store.Pages.Books.CreateModel
+@{
+}
+
+<h1>Create new Book</h1>
+<hr />
+
+<form method="post">
+    <div class="row ">
+        <div class="col-md-6">
+            <input asp-for="Book.Name" placeholder="Name" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="Book.Year" placeholder="Year" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-2">
+            <textarea asp-for="Book.Description" class="form-control" placeholder="Description"></textarea>
+        </div>
+    </div>
+    <div class="mt-2">
+        <button class="btn btn-primary">Submit</button>
+        <a asp-page="/Books/Index">Back To Index</a>
+    </div>
+</form>
