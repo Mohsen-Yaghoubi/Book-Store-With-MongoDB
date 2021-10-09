@@ -15,28 +15,38 @@
             <input class="form-control" type="text" name="name" placeholder="Book Name" />
             <button type="submit" class="btn btn-success">Search</button>
         </form>
-        <a asp-page="./Index" class="btn btn-secondary">Reset</a>
+        <a asp-page="./Index" class="btn btn-secondary ml-1">Reset</a>
     </div>
 </div>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <td>Name</td>
-            <td>Year</td>
-            <td>Action</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Books)
-        {
+@if (!Model.Books.Any())
+{
+    <div class="help-block alert alert-info">
+        <p class="text-center">Nothing!</p>
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>@item.Name</td>
-                <td>@item.Year</td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
-                    <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-                </td>
+                <td>Name</td>
+                <td>Year</td>
+                <td>Action</td>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Books)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Year</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
